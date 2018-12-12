@@ -7,20 +7,31 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './app.materialmodule';
 import { PersonasService } from './services/personas.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NotificacionComponent } from './components/notificacion/notificacion.component';
+import { NotificacionesServiceService } from './services/notificaciones-service.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotificacionComponent
+  ],
+  entryComponents: [
+    NotificacionComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    PersonasService    
+    PersonasService,
+    NotificacionesServiceService   
   ],
   bootstrap: [AppComponent]
 })

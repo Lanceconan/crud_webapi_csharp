@@ -1,0 +1,8 @@
+<div [ngClass]="type == 'success' ? 'success-snack' : type == 'warning' ? 'warning-snack' : 'danger-snack' ">
+    <i *ngIf="type == 'success'" class="material-icons">done</i>
+    <i *ngIf="type == 'warning'" class="material-icons">warning</i>
+    <i *ngIf="type == 'error'" class="material-icons">error</i>
+    <span>
+        &nbsp;&nbsp;{{message}} !!!
+    </span>
+</div>

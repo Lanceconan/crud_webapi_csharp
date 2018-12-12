@@ -1,0 +1,30 @@
+.table-container {
+    margin-left: 20px !important;
+    width: 900px;
+    height: 400px;
+}
+
+td.mat-cell {
+    font-size: 11px !important;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: 0%;
+}
+
+.edit-container {
+    border: 1px solid black;
+    padding: 2% 4%;
+    width: 200px;
+    position: absolute;
+}

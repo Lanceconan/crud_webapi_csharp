@@ -1,1 +1,102 @@
-{{ personaPrueba?.nombres }}
+<div class="table-container">
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro de Búsqueda">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+
+            <!-- nombres -->
+            <ng-container matColumnDef="nombres">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombres </th>
+                <td mat-cell *matCellDef="let row"> {{row.nombres | titlecase}} </td>
+            </ng-container>
+
+            <!-- apellidoPaterno -->
+            <ng-container matColumnDef="apellidoPaterno">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido Paterno </th>
+                <td mat-cell *matCellDef="let row"> {{row.apellidoPaterno | titlecase}} </td>
+            </ng-container>
+
+            <!-- apellidoMaterno -->
+            <ng-container matColumnDef="apellidoMaterno">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido Materno </th>
+                <td mat-cell *matCellDef="let row"> {{row.apellidoMaterno | titlecase}} </td>
+            </ng-container>
+
+            <!-- apellidoMaterno -->
+            <ng-container matColumnDef="fechaNacimiento">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Nacimiento </th>
+                <td mat-cell *matCellDef="let row"> {{ row.fechaNacimiento | date: 'dd-MM-yyyy' }} </td>
+            </ng-container>
+
+            <!-- email -->
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                <td mat-cell *matCellDef="let row">{{ row.email | lowercase }} </td>
+            </ng-container>
+
+            <!-- email -->
+            <ng-container matColumnDef="opciones">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="probar"> Opciones </th>
+                <td mat-cell *matCellDef="let row" class="probar">
+                    <button mat-icon-button (click)="editar(row.id)"><mat-icon>edit</mat-icon></button>
+                    <button mat-icon-button (click)="eliminar(row.id)"><mat-icon>delete</mat-icon></button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+</div>
+
+<div class="edit-container">
+
+    <h3>Editar Persona</h3>
+    <form [formGroup]="personaForm">
+
+        <mat-form-field>
+            <input matInput placeholder="Nombres" formControlName="nombres">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Apellido Paterno" formControlName="apellidoPaterno">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Apellido Materno" formControlName="apellidoMaterno">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput readonly="true" [matDatepicker]="picker" placeholder="Fecha de Nacimiento" formControlName="fechaNacimiento">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="save()">
+          Guardar
+        </button>
+
+        <button mat-raised-button color="warn" (click)="cancelar()">
+          Cancelar
+        </button>
+
+        <button mat-raised-button color="accent" (click)="cargarDatos()">
+            Reset
+        </button>
+
+    </form>
+</div>
