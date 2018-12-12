@@ -1,11 +1,9 @@
-export class Personas{
-    
-    constructor(
-        private id: number,
-        private apellidoPaterno: string,
-        private apellidoMaterno: string,
-        private fechaNacimiento: Date,
-        private email: string
-    ) {}
+export class Personas {
+    public id: number;
+    public nombres: string;
+    public apellidoPaterno: string;
+    public apellidoMaterno: string;
+    public fechaNacimiento: Date;
+    public email: string;
 
 }

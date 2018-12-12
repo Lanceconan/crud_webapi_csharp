@@ -17,4 +17,18 @@ export class PersonasService {
   getPersonaById(id: string): Observable<Personas>{
     return this.http.get<Personas>(this.apiDirection + id);
   }
+
+  updatePersona(persona: Personas){
+    let headers = new HttpHeaders({ "content-type": "application/json" });
+    return this.http.put<any>(this.apiDirection + persona.id, persona, { headers: headers });
+  }
+
+  createPersona(persona: Personas){
+    let headers = new HttpHeaders({ "content-type": "application/json" });
+    return this.http.post<any>(this.apiDirection + persona.id, persona, { headers: headers });
+  }
+
+  deletePersona(id: string){
+    return this.http.delete<any>(this.apiDirection + id);
+  }
 }

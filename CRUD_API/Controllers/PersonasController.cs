@@ -14,6 +14,11 @@ namespace CRUD_API.Controllers
 {
     public class PersonasController : ApiController
     {
+        public HttpResponseMessage Options()
+        {
+            return new HttpResponseMessage { StatusCode = HttpStatusCode.OK };
+        }
+
         private WebApiCSharpEntitiesDef db = new WebApiCSharpEntitiesDef();
 
         // GET: api/Personas
@@ -78,6 +83,8 @@ namespace CRUD_API.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            personas.id = db.Personas.Count() + 1;
 
             db.Personas.Add(personas);
 
